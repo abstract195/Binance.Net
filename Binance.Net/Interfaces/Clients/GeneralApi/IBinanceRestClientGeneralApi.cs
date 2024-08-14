@@ -39,5 +39,7 @@
         /// Endpoints related to Binance Simple Earn
         /// </summary>
         IBinanceRestClientGeneralApiSimpleEarn SimpleEarn { get; }
+
+        IBinanceRestClientGeneralApiLending Lending { get; }
     }
 }

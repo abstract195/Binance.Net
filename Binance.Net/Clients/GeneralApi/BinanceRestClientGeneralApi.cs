@@ -11,7 +11,7 @@ namespace Binance.Net.Clients.GeneralApi
     /// <inheritdoc cref="IBinanceRestClientGeneralApi" />
     internal class BinanceRestClientGeneralApi : RestApiClient, IBinanceRestClientGeneralApi
     {
-        #region fields 
+        #region fields
         /// <inheritdoc />
         public new BinanceRestApiOptions ApiOptions => (BinanceRestApiOptions)base.ApiOptions;
         /// <inheritdoc />
@@ -35,11 +35,13 @@ namespace Binance.Net.Clients.GeneralApi
         public IBinanceRestClientGeneralApiStaking Staking { get; }
         /// <inheritdoc />
         public IBinanceRestClientGeneralApiSimpleEarn SimpleEarn { get; }
+
+        public IBinanceRestClientGeneralApiLending Lending { get; }
         #endregion
 
         #region constructor/destructor
 
-        internal BinanceRestClientGeneralApi(ILogger logger, HttpClient? httpClient, BinanceRestClient baseClient, BinanceRestOptions options) 
+        internal BinanceRestClientGeneralApi(ILogger logger, HttpClient? httpClient, BinanceRestClient baseClient, BinanceRestOptions options)
             : base(logger, httpClient, options.Environment.SpotRestAddress, options, options.SpotOptions)
         {
             _baseClient = baseClient;
@@ -51,6 +53,7 @@ namespace Binance.Net.Clients.GeneralApi
             SubAccount = new BinanceRestClientGeneralApiSubAccount(this);
             Staking = new BinanceRestClientGeneralApiStaking(this);
             SimpleEarn = new BinanceRestClientGeneralApiSimpleEarn(this);
+            Lending = new BinanceRestClientGeneralApiLending(this);
 
             RequestBodyEmptyContent = "";
             RequestBodyFormat = RequestBodyFormat.FormData;
